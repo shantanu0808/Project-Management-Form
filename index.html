@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Project Details Form</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script
+        src="https://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Project Details</h2>
+            <form id="projForm" method="post">
+                <div class="form-group">
+                    <span><label for="projId">Project ID:</label> <label id="projIdMsg">
+                        </label></span>
+                    <input type="text" class="form-control" name="projId" id="projId"
+                           placeholder="Enter Project ID" onchange="getProj()" required>
+                </div>
+                <div class="form-group">
+                    <label for="projName">Project Name:</label>
+                    <input type="text" class="form-control" id="projName"
+                           placeholder="Enter Project Name" name="projName">
+                </div>
+                <div class="form-group">
+                    <label for="assnTo">Assigned-To:</label>
+                    <input type="text" class="form-control" id="assnTo"
+                           placeholder="Enter Assigned Person Name" name="assnTo">
+                </div>
+                <div class="form-group">
+                    <label for="assnDate">Assignment-Date:</label>
+                    <input type="date" class="form-control" id="assnDate"
+                           placeholder="Enter Assignment Date" name="assnDate">
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Deadline:</label>
+                    <input type="date" class="form-control" id="deadline"
+                           placeholder="Enter Deadline" name="deadline">
+                </div>
+                <input type="button" class="btn btn-primary" id="projSave" value="Save"
+                       onclick="saveProject();">
+                <input type="button" class="btn btn-primary" id="projUpdate" value="Update"
+                       onclick="updateProject();">
+                <input type="button" class="btn btn-primary" id="projReset" value="Reset"
+                       onclick="resetForm();">
+            </form>
+        </div>
+    </body>
+</html>
