@@ -6,7 +6,7 @@ var projDBName = 'Project-DB';
 var projRelationName = 'ProjData';
 var connToken = '90938151|-31949272997338162|90955135';
 
-$("#projId").focus();
+
 
 function saveRecNo2LS(jsonObj) {
     var lvData = JSON.parse(jsonObj.data);
@@ -22,13 +22,13 @@ function getProjIdAsJsonObj() {
     return JSON.stringify(jsonStr);
 }
 
-function fillData (jsonObj) { 
-    saveRecNo2LS(jsonObj); 
-    var record = JSON.parse(jsonObj.data).record; 
-    $('#projName').val(record.projName); 
-    $('#assnTo').val(record.assnTo); 
-    $('#assnDate').val(record.assnDate); 
-    $("#deadline").val(record.deadline); 
+function fillData(jsonObj) {
+    saveRecNo2LS(jsonObj);
+    var record = JSON.parse(jsonObj.data).record;
+    $('#projName').val(record.projName);
+    $('#assnTo').val(record.assnTo);
+    $('#assnDate').val(record.assnDate);
+    $("#deadline").val(record.deadline);
 }
 
 function validateAndGetFormData() {
@@ -104,33 +104,37 @@ function saveProject() {
 
 function updateProject() {
 
-$('#projUpdate').prop("disabled", true); 
-jsonUpd = validateData();
-var updateRequest = createUPDATERecordRequest(connToken, jsonUpd, projDBName, projRelationName, localStorage.getItem("recno"));
-jQuery.ajaxSetup({async: false}); 
-var resJsonObj = executeCommandAtGivenBaseUrl(updateRequest, jpdbBaseUrl, jpdbIML); 
-jQuery.ajaxSetup({async: true});
-console.log(resJsonObj); 
-resetForm();
+    $('#projUpdate').prop("disabled", true);
+    jsonUpd = validateData();
+    var updateRequest = createUPDATERecordRequest(connToken, jsonUpd, projDBName, projRelationName, localStorage.getItem("recno"));
+    jQuery.ajaxSetup({async: false});
+    var resJsonObj = executeCommandAtGivenBaseUrl(updateRequest, jpdbBaseUrl, jpdbIML);
+    jQuery.ajaxSetup({async: true});
+    console.log(resJsonObj);
+    resetForm();
 
-$('#projId').focus();
+    $('#projId').focus();
 }
 
-function getProj() { 
+function getProj() {
     var projIdJsonObj = getProjIdAsJsonObj();
-    getRequest = createGET_BY_KEYRequest(connToken, projDBName, projRelationName, projIdJsonObj); 
-    jQuery.ajaxSetup ({async: false});
+    getRequest = createGET_BY_KEYRequest(connToken, projDBName, projRelationName, projIdJsonObj);
+    jQuery.ajaxSetup({async: false});
     var resJsonObj = executeCommandAtGivenBaseUrl(getRequest, jpdbBaseUrl, jpdbIRL);
-    jQuery.ajaxSetup ({async: true});
-    if (resJsonObj.status === 400) { 
-        $("#projSave").prop("disabled", false); 
-        $("#projReset").prop("disabled", false); 
-        $("#projName").focus(); 
-    }else if (resJsonObj.status === 200) {
-        $("#projId").prop("disabled", true); 
-        fillData(resJsonObj); 
-        $("#projUpdate").prop("disabled", false); 
-        $("#projReset").prop("disabled", false); 
+    jQuery.ajaxSetup({async: true});
+    if (resJsonObj.status === 400) {
+        $("#projSave").prop("disabled", false);
+        $("#projReset").prop("disabled", false);
+        $("#projName").prop("disabled", false);
+        $("#assnTo").prop("disabled", false);
+        $("#assnDate").prop("disabled", false);
+        $("#deadline").prop("disabled", false);
+        $("#projName").focus();
+    } else if (resJsonObj.status === 200) {
+        $("#projId").prop("disabled", true);
+        fillData(resJsonObj);
+        $("#projUpdate").prop("disabled", false);
+        $("#projReset").prop("disabled", false);
         $("#projName").focus();
     }
 }
