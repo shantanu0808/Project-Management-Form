@@ -17,7 +17,7 @@
     <body>
         <div class="container">
             <h2>Project Details</h2>
-            <form id="projForm" method="post">
+            <form id="projForm" method="post" onload="disablefun()">
                 <div class="form-group">
                     <span><label for="projId">Project ID:</label> <label id="projIdMsg">
                         </label></span>
@@ -52,5 +52,15 @@
                        onclick="resetForm();">
             </form>
         </div>
+        <script>
+            $("#projId").focus();
+            $("#projName").prop("disabled", true);
+            $("#assnTo").prop("disabled", true);
+            $("#assnDate").prop("disabled", true);
+            $("#deadline").prop("disabled", true);
+            $("#projSave").prop("disabled", true);
+            $("#projUpdate").prop("disabled", true);
+            $("#projReset").prop("disabled", true);
+        </script>
     </body>
 </html>
