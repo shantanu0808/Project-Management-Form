@@ -135,6 +135,13 @@ function getProj() {
         fillData(resJsonObj);
         $("#projUpdate").prop("disabled", false);
         $("#projReset").prop("disabled", false);
+        $("#projName").prop("disabled", false);
+
+        $("#assnTo").prop("disabled", false);
+
+        $("#assnDate").prop("disabled", false);
+
+        $("#deadline").prop("disabled", false);
         $("#projName").focus();
     }
 }
